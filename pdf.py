@@ -1,27 +1,43 @@
 import PyPDF2
 
-# open pdf files
-file_one = open('./pdfs/two-pages.pdf', 'rb')
-file_two = open('./pdfs/three-pages.pdf', 'rb')
-# read pdf files
-pdf_reader_one = PyPDF2.PdfFileReader(file_one)
-pdf_reader_two = PyPDF2.PdfFileReader(file_two)
-# get number of pages for each pdf
-file_one_pages = pdf_reader_one.getNumPages()
-file_two_pages = pdf_reader_two.getNumPages()
-
-output_file = open('merged_doc.pdf', 'wb')
+output_file = open('merged.pdf', 'wb')
 pdf_writer = PyPDF2.PdfFileWriter()
 
-# for every page, add a new file to output file
-for page in range(file_one_pages):
-    pdf_writer.addPage(pdf_reader_one.getPage(page))
 
-for page in range(file_two_pages):
-    pdf_writer.addPage(pdf_reader_two.getPage(page))
+class PDF:
+    def __init__(self, name):
+        self.name = name
+        self.path = './pdfs/' + name
+        self.pages = 0
+        self.pdf_reader = None
+
+    def open(self):
+        return open(self.path, 'rb')
+
+    def read(self):
+        self.pdf_reader = PyPDF2.PdfFileReader(self.open())
+
+    def add_pages(self):
+        self.pages = self.pdf_reader.getNumPages()
+
+        for page in range(self.pages):
+            pdf_writer.addPage(self.pdf_reader.getPage(page))
+
+    def close(self):
+        self.open().close()
+
+    def merge(self):
+        self.open()
+        self.read()
+        self.add_pages()
+        self.close()
+
+
+# instantiated classes
+pdf_two = PDF('three-pages.pdf')
+pdf_two.merge()
+
+pdf_one = PDF('two-pages.pdf')
+pdf_one.merge()
 
 pdf_writer.write(output_file)
-# close opened files and output file
-file_one.close()
-file_two.close()
-output_file.close()
