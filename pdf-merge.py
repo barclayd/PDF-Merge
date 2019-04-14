@@ -32,13 +32,9 @@ class PDF:
         self.get_file_name()
         self.open()
         self.read()
-        self.display_pages()
         self.set_page_range()
         self.add_pages(self.page_range)
         self.close()
-
-    def display_pages(self):
-        print("{} has {} pages".format(self.file, self.pages))
 
     def set_page_range(self):
         first_page = int(input("Number of first page of PDF to be merged: "))
@@ -64,7 +60,8 @@ pdf_two = PDF()
 pdf_one = PDF()
 
 # PDFs
-documents = [pdf_one, pdf_two]
+documents = []
+documents_length = IntVar()
 
 
 # functions
@@ -80,44 +77,41 @@ def merge_documents():
     root.quit()
 
 
+def add_new_pdf():
+    documents.append(PDF())
+    documents_length.set(len(documents))
+    draw_gui()
+
+
+def draw_gui():
+    for i in range(int(documents_length.get())):
+        # pdf row
+        Button(root, text='Add PDF', command=documents[i].load_file).grid(row=i + 1, column=0)
+        Label(root, textvariable=documents[i].filename, width=20).grid(row=i + 1, column=1, sticky=(N, S, E, W))
+        Label(root, text='Pages').grid(row=i + 1, column=2)
+        Label(root, textvariable=documents[i].pages, width=3).grid(row=i + 1, column=3, sticky=(N, S, E, W))
+        Label(root, text='Start: ').grid(row=i + 1, column=4)
+        entry_1 = Entry(root, textvariable=documents[i].page_range[0], width=3)
+        entry_1.grid(row=i + 1, column=5)
+        Label(root, text='End: ').grid(row=i + 1, column=6)
+        entry_2 = Entry(root, textvariable=documents[i].page_range[1], width=3)
+        entry_2.grid(row=i + 1, column=7)
+
+
+def draw_buttons():
+    Button(root, text='Add new PDF', command=add_new_pdf, width=10, bg="blue").grid(row=int(documents_length.get()) + 2,
+                                                                                    column=8, sticky=E)
+    Button(root, text='Save and Merge PDF', command=merge_documents, width=10, bg="blue")\
+        .grid(row=int(documents_length.get()) + 3, column=8, sticky=E)
+
+
 # draw tkinter gui using grid
 Label(root, text='Combine and Merge PDFs').grid(row=0, column=2)
-# pdf row
-Button(root, text='Add PDF', command=documents[0].load_file).grid(row=1, column=0)
-Label(root, textvariable=documents[0].filename, width=20).grid(row=1, column=1, sticky=(N, S, E, W))
-Label(root, text='Pages').grid(row=1, column=2)
-Label(root, textvariable=documents[0].pages, width=3).grid(row=1, column=3, sticky=(N, S, E, W))
-Label(root, text='Start: ').grid(row=1, column=4)
-entry_1 = Entry(root, textvariable=documents[0].page_range[0], width=3)
-entry_1.grid(row=1, column=5)
-Label(root, text='End: ').grid(row=1, column=6)
-entry_2 = Entry(root, textvariable=documents[0].page_range[1], width=3)
-entry_2.grid(row=1, column=7)
-# 2nd pdf row
-Button(root, text='Add PDF', command=documents[1].load_file).grid(row=2, column=0)
-Label(root, textvariable=documents[1].filename, width=20).grid(row=2, column=1, sticky=(N, S, E, W))
-Label(root, text='Pages').grid(row=2, column=2)
-Label(root, textvariable=documents[1].pages, width=3).grid(row=2, column=3, sticky=(N, S, E, W))
-Label(root, text='Start: ').grid(row=2, column=4)
-entry_1 = Entry(root, textvariable=documents[1].page_range[0], width=3)
-entry_1.grid(row=2, column=5)
-Label(root, text='End: ').grid(row=2, column=6)
-entry_2 = Entry(root, textvariable=documents[1].page_range[1], width=3)
-entry_2.grid(row=2, column=7)
-
-
-Button(root, text='Save and Merge PDF', command=merge_documents, width=10).grid(row=3, column=2, sticky=E)
+draw_buttons()
 
 # style each element in GUI
 for child in root.winfo_children():
     child.grid_configure(padx=10, pady=10)
 
-
-# set output file settings
-# output_file_name = input('Save new file as : ')
-# output_file = open(output_file_name, 'wb')
-
-# write merged pdf file
-# pdf_writer.write(output_file)
 
 root.mainloop()
