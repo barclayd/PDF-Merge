@@ -1,6 +1,14 @@
 import PyPDF2
+from pdf_merger import pdf_writer
 # welcome message
 print("Welcome to PDF Merge, a handy python script to help you merge PDFs for free")
+while True:
+    try:
+        document_count = int(input("How many PDF documents would you like to merge? (1-1000+) "))
+    except ValueError:
+        print("Sorry, I don't understand that number...")
+        continue
+    break
 
 
 class PDF:
@@ -9,6 +17,7 @@ class PDF:
         self.pages = None
         self.pdf_reader = None
         self.page_range = None
+        self.filename = None
 
     def open(self):
         return open(self.path, 'rb')
@@ -37,22 +46,19 @@ class PDF:
         print("{} has {} pages".format(self.path, self.pages))
 
     def set_page_range(self):
-        first_page = int(input("Number of first page of PDF to be merged: "))
-        last_page = int(input("Number of last page of PDF to be merged: "))
+        first_page = int(input("Number of first page of PDF to be merged from {}: ".format(self.filename)))
+        last_page = int(input("Number of last page of PDF to be merged from {}: ".format(self.filename)))
         self.page_range = (first_page, last_page)
 
     def get_file_name(self):
         self.path = input('Please enter the name of the PDF file you wish to merge: ')
+        self.filename = self.path.split('/')[-1]
 
 
-# instantiated classes
-pdf_writer = PyPDF2.PdfFileWriter()
-
-pdf_two = PDF()
-pdf_two.merge()
-
-pdf_one = PDF()
-pdf_one.merge()
+# PDF list
+for i in range(document_count):
+    new_document = PDF()
+    new_document.merge()
 
 # set output file settings
 output_file_name = input('Save new file as : ')
