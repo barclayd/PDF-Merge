@@ -28,22 +28,6 @@ class PDF:
     def close(self):
         self.open().close()
 
-    def merge(self):
-        self.get_file_name()
-        self.open()
-        self.read()
-        self.set_page_range()
-        self.add_pages(self.page_range)
-        self.close()
-
-    def set_page_range(self):
-        first_page = int(input("Number of first page of PDF to be merged: "))
-        last_page = int(input("Number of last page of PDF to be merged: "))
-        self.page_range = (first_page, last_page)
-
-    def get_file_name(self):
-        self.file = input('Please enter the name of the PDF file you wish to merge: ')
-
     def load_file(self):
         self.file = askopenfilename(filetypes=(("PDF File", "*.pdf"), ('All Files', '*.*')))
         self.filename.set(self.file.split('/')[-1])
