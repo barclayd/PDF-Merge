@@ -1,4 +1,4 @@
-from pdf_merge import *
+from pdf_merger import *
 from drag_drop import *
 
 root.title('PDF Merge')
