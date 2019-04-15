@@ -1,4 +1,6 @@
 from pdf_merge import *
+from drag_drop import *
+
 root.title('PDF Merge')
 
 
@@ -65,7 +67,7 @@ Label(root, text='Combine and Merge PDFs').grid(row=0, column=0, columnspan=4)
 Button(root, text='Add PDF', command=add_new_pdf).grid(row=2, column=0)
 Button(root, text='Remove PDF', command=remove_pdf).grid(row=3, column=0)
 
-listbox = Listbox(root)
+listbox = DragDropListbox(root, documents)
 listbox.bind('<<ListboxSelect>>', display_pdf)
 listbox.grid(row=1, rowspan=4, column=1)
 
