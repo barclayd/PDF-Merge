@@ -6,6 +6,10 @@ A desktop tool to allow PDFs to be merged together in a custom order. Built usin
 
 ##### Demo
 
+<p align="center">
+  <img alt="PDF Merge CLI" src='https://user-images.githubusercontent.com/39765499/56249196-c524c300-60a2-11e9-853b-a3b335e1811a.gif'>
+</p>
+
 ##### Features
 
 * Select documents to be merged
@@ -14,20 +18,13 @@ A desktop tool to allow PDFs to be merged together in a custom order. Built usin
 * Set and save merged file name
 * Supports an infinite number of PDFs
 
-### GUI version 1
+### GUI version
 
 ##### Demo
 
-##### Features
-
-* Select documents to be merged
-* Specify a page range to be merged for each PDF
-* Supports an infinite number of PDFs to be merged
-* Save the merged PDF document anywhere within your directory
-
-### GUI version 2
-
-##### Demo
+<p align="center">
+  <img alt="PDF Merge GUI" src='https://user-images.githubusercontent.com/39765499/56248547-52b2e380-60a0-11e9-934c-dc1541d0c723.gif'>
+</p>
 
 ##### Features
 

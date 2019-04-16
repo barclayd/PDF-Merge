@@ -61,7 +61,18 @@ for i in range(document_count):
     new_document.merge()
 
 # set output file settings
-output_file_name = input('Save new file as : ')
+extensionsToCheck = '.pdf'
+while True:
+    try:
+        output_file_name = input('Save new file as : ')
+        if not output_file_name.endswith(extensionsToCheck):
+            raise ValueError()
+    except ValueError as error:
+        print("File must end with .pdf")
+        continue
+    break
+
+
 output_file = open(output_file_name, 'wb')
 
 # write merged pdf file
