@@ -18,6 +18,16 @@ A desktop tool to allow PDFs to be merged together in a custom order. Built usin
 * Set and save merged file name
 * Supports an infinite number of PDFs
 
+
+### How to Run
+
+```
+$ git clone https://github.com/barclayd/PDF-Merge
+$ cd PDF-Merge
+$ pip install PyPDF2
+$ python command-line-pdf-merge.py
+```
+
 ### GUI version
 
 ##### Demo
@@ -35,6 +45,16 @@ A desktop tool to allow PDFs to be merged together in a custom order. Built usin
 * Supports drag and drop to re-organise structure of merged PDF document
 * Save the merged PDF document anywhere within your directory
 * Improved display of PDF documents
+
+### How to Run
+
+```
+$ git clone https://github.com/barclayd/PDF-Merge
+$ cd PDF-Merge
+$ pip install PyPDF2
+$ python pdf_merge_v2.py
+```
+
 
 ### Future improvements
 
