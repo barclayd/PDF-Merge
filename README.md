@@ -61,3 +61,4 @@ $ python pdf_merge_v2.py
 * Input validation for page range
 * Option to duplicate a specific document and its selected page range
 * Sort PDF list by date added, name, number of pages and more
+* Option to preview pages being merged for each document and preview merged document before saving
