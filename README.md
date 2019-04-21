@@ -22,7 +22,7 @@ A desktop tool to allow PDFs to be merged together in a custom order. Built usin
 ### How to Run
 
 ```
-$ git clone https://github.com/barclayd/PDF-Merge
+$ git clone https://github.com/barclayd/PDF-Merge.git
 $ cd PDF-Merge
 $ pip install PyPDF2
 $ python command-line-pdf-merge.py
@@ -49,7 +49,7 @@ $ python command-line-pdf-merge.py
 ### How to Run
 
 ```
-$ git clone https://github.com/barclayd/PDF-Merge
+$ git clone https://github.com/barclayd/PDF-Merge.git
 $ cd PDF-Merge
 $ pip install PyPDF2
 $ python pdf_merge_v2.py
